@@ -57,6 +57,8 @@ public class HelperAprobare {
 			codAprobare = getCodAprobareATR(conn, delegatie);
 		else if (delegatie.getTipAngajat().trim().equalsIgnoreCase("SBL"))
 			codAprobare = getCodAprobareSBA(conn, delegatie);
+		else if (delegatie.getTipAngajat().trim().equalsIgnoreCase("CVW"))
+			codAprobare = getCodAprobareCVW(conn, delegatie.getCodAngajat());		
 		else
 			codAprobare = getCodAprobareGeneral(conn, delegatie.getCodAngajat());
 
@@ -406,4 +408,44 @@ public class HelperAprobare {
 		return codAprobare;
 	}
 
+	
+	public static String getCodAprobareCVW(Connection conn, String codAngajat) {
+
+		String codAprobare = null;
+		String codSMW = null;
+		String codDZ = null;
+
+		try (PreparedStatement stmt = conn.prepareStatement(SqlQueries.getCodAprobareCVW());) {
+
+			stmt.setString(1, codAngajat);
+			stmt.executeQuery();
+
+			ResultSet rs = stmt.getResultSet();
+
+			while (rs.next()) {
+
+				if (rs.getString("aprobat").equalsIgnoreCase("SMW"))
+					codSMW = rs.getString("fid");
+
+				if (rs.getString("aprobat").equalsIgnoreCase("DZ"))
+					codDZ = rs.getString("fid");
+
+			}
+
+			if (codSMW != null)
+				codAprobare = codSMW;
+			else
+				codAprobare = codDZ;
+
+		} catch (SQLException e) {
+			MailOperations.sendMail(e.toString());
+			logger.error(Utils.getStackTrace(e));
+		}
+
+		return codAprobare;
+
+	}
+	
+	
+	
 }

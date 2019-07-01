@@ -15,8 +15,10 @@ import org.apache.logging.log4j.Logger;
 import com.google.maps.model.LatLng;
 
 import flota.service.beans.BeanDelegatieCauta;
+import flota.service.beans.DelegatieNoua;
 import flota.service.beans.PunctTraseu;
 import flota.service.database.DBManager;
+import flota.service.helpers.HelperAprobare;
 import flota.service.model.OperatiiDelegatii;
 import flota.service.model.OperatiiTraseu;
 import flota.service.model.ServiceDelegatii;
@@ -28,7 +30,7 @@ public class TestClass {
 
 	public static void main(String[] args) throws SQLException {
 
-		//new OperatiiDelegatii().recalculeazaDelegatie("72981644114");
+		new OperatiiDelegatii().recalculeazaDelegatie("77306880549");
 
 		// System.out.println(new OperatiiAngajat().getAngajatCategorie("MS10",
 		// "
@@ -36,7 +38,7 @@ public class TestClass {
 		// ",
 		// ""));
 
-		 new OperatiiDelegatii().getDelegatiiAprobari("DAG" , "GL90" , "");
+		// System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("SDKA" , "CT10" , "11"));
 
 		// new ServiceDelegatii().calculeazaKmSfarsitLuna();
 
@@ -46,6 +48,15 @@ public class TestClass {
 		
 		
 		 //testNrOpriri();
+		
+		
+		 //System.out.println("Del:" + new OperatiiDelegatii().afiseazaDelegatiiProprii("00000475", "29-05-2019", "04-06-2019"));
+		
+		//System.out.println("Modif del: " + new OperatiiDelegatii().getDelegatiiModificare("00000475"));
+		
+		
+
+		
 
 	}
 

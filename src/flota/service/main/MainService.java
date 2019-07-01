@@ -142,11 +142,14 @@ public class MainService {
 			@QueryParam("dataStop") String dataStop, @QueryParam("tipAngajat") String tipAngajat, @QueryParam("unitLog") String unitLog,
 			@QueryParam("codDepart") String codDepart, @QueryParam("tipAfis") String tipAfis) {
 
+		
 		if (tipAfis != null && tipAfis.equalsIgnoreCase("P"))
 			return new OperatiiDelegatii().afiseazaDelegatiiProprii(codAngajat, dataStart, dataStop);
 		else if (tipAfis != null && tipAfis.equalsIgnoreCase("S"))
 			return new OperatiiDelegatii().afiseazaDelegatiiSubord(dataStart, dataStop, tipAngajat, unitLog, codDepart);
-
+		
+		
+		
 		return new ArrayList<>();
 
 	}

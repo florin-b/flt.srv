@@ -472,7 +472,6 @@ public class OperatiiTraseu {
 
 	public Traseu getTraseu(String codAngajat, String dataStart, String dataStop, String nrMasina) {
 
-		
 		System.out.println("getTraseu: " + codAngajat + " , " +  dataStart + " , " + dataStop + " , " + nrMasina);
 		
 		Traseu traseu = new Traseu();
