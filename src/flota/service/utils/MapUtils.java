@@ -83,7 +83,9 @@ public class MapUtils {
 
 			strAddress.append(address.getCountry());
 
-			GeoApiContext context = GoogleContext.getContext(value);
+			//GeoApiContext context = GoogleContext.getContext(value);
+			
+			GeoApiContext context = GoogleContext.getContextKey();
 
 			GeocodingResult[] results;
 
@@ -102,12 +104,12 @@ public class MapUtils {
 
 		} catch (OverQueryLimitException q) {
 			logger.error("geocodeAddress -> " + q.toString() + " , key =" + value);
-			//MailOperations.sendMail("geocodeAddress -> " + q.toString() + " , key =" + value);
+			MailOperations.sendMail("geocodeAddress -> " + q.toString() + " , key =" + value);
 
 			
 		} catch (Exception e) {
 			logger.error("geocodeAddress -> " + Utils.getStackTrace(e));
-			//MailOperations.sendMail(e.toString() + " , " + address.toString());
+			MailOperations.sendMail(e.toString() + " , " + address.toString());
 
 		}
 
@@ -133,7 +135,9 @@ public class MapUtils {
 			Random rand = new Random(System.currentTimeMillis());
 			int value = rand.nextInt((MAX_KEYS - 1) + 1) + 1;
 
-			GeoApiContext context = GoogleContext.getContext(value);
+			//GeoApiContext context = GoogleContext.getContext(value);
+			
+			GeoApiContext context = GoogleContext.getContextKey();
 
 			LatLng start = new LatLng(listCoords.get(0).lat, listCoords.get(0).lng);
 
@@ -149,10 +153,10 @@ public class MapUtils {
 
 		} catch (OverQueryLimitException q) {
 			logger.error("getDistantaTraseu -> " + Utils.getStackTrace(q));
-			//MailOperations.sendMail("getDistantaTraseu -> " + q.toString());
+			MailOperations.sendMail("getDistantaTraseu -> " + q.toString());
 			
 		} catch (Exception ex) {
-			//MailOperations.sendMail("getDistantaTraseu -> " + ex.toString());
+			MailOperations.sendMail("getDistantaTraseu -> " + ex.toString());
 			logger.error(Utils.getStackTrace(ex));
 		}
 
@@ -181,7 +185,9 @@ public class MapUtils {
 			Random rand = new Random(System.currentTimeMillis());
 			int value = rand.nextInt((MAX_KEYS - 1) + 1) + 1;
 
-			GeoApiContext context = GoogleContext.getContext(value);
+			//GeoApiContext context = GoogleContext.getContext(value);
+			
+			GeoApiContext context = GoogleContext.getContextKey();
 
 			String start = "Romania, " + listAdrese.get(0).split("/")[1] + " , " + listAdrese.get(0).split("/")[0];
 
@@ -197,9 +203,9 @@ public class MapUtils {
 
 		} catch (OverQueryLimitException q) {
 			logger.error("getDistantaTraseuAdrese -> " + Utils.getStackTrace(q));
-			//MailOperations.sendMail(q.toString());
+			MailOperations.sendMail(q.toString());
 		} catch (Exception ex) {
-			//MailOperations.sendMail(ex.toString());
+			MailOperations.sendMail(ex.toString());
 			logger.error("getDistantaTraseuAdrese -> " + Utils.getStackTrace(ex));
 		}
 
@@ -228,7 +234,9 @@ public class MapUtils {
 
 			String[] arrayPoints = strList.toArray(new String[strList.size()]);
 
-			GeoApiContext context = GoogleContext.getContext(value);
+			//GeoApiContext context = GoogleContext.getContext(value);
+			
+			GeoApiContext context = GoogleContext.getContextKey();
 
 			LatLng start = listAdrese.get(0).getCoordonate();
 
@@ -245,10 +253,10 @@ public class MapUtils {
 		} catch (OverQueryLimitException q) {
 			logger.error("getDistantaTraseuCoordonate -> " + Utils.getStackTrace(q) + " key = " + value);
 			distanta = -1;
-			//MailOperations.sendMail(q.toString());
+			MailOperations.sendMail(q.toString());
 			
 		} catch (Exception ex) {
-			//MailOperations.sendMail(ex.toString());
+			MailOperations.sendMail(ex.toString());
 			logger.error("getDistantaTraseuCoordonate -> " + Utils.getStackTrace(ex));
 			distanta = -1;
 		}
@@ -264,7 +272,9 @@ public class MapUtils {
 		Random rand = new Random(System.currentTimeMillis());
 		int value = rand.nextInt((MAX_KEYS - 1) + 1) + 1;
 
-		GeoApiContext context = GoogleContext.getContext(value);
+		//GeoApiContext context = GoogleContext.getContext(value);
+		
+		GeoApiContext context = GoogleContext.getContextKey();
 
 		String adresaStart = "";
 		String adresaStop = "";
@@ -330,11 +340,11 @@ public class MapUtils {
 
 			} catch (OverQueryLimitException q) {
 				logger.error("getAdreseCoordonate -> " + Utils.getStackTrace(q) + " , key = " + value);
-				//MailOperations.sendMail("getAdreseCoordonate -> " + Utils.getStackTrace(q) + " , key = " + value);
+				MailOperations.sendMail("getAdreseCoordonate -> " + Utils.getStackTrace(q) + " , key = " + value);
 				
 			} catch (Exception e) {
 				logger.error("getAdreseCoordonate -> " + Utils.getStackTrace(e) + " , key = " + value);
-				//MailOperations.sendMail("getAdreseCoordonate -> " + e.toString());
+				MailOperations.sendMail("getAdreseCoordonate -> " + e.toString());
 			}
 		}
 

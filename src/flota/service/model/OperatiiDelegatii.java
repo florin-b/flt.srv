@@ -38,6 +38,7 @@ public class OperatiiDelegatii {
 
 	public synchronized boolean adaugaDelegatie(DelegatieNoua delegatie) {
 
+		
 		boolean success = true;
 
 		try (Connection conn = new DBManager().getProdDataSource().getConnection();
@@ -101,7 +102,6 @@ public class OperatiiDelegatii {
 			logger.error("Opriri: " + delegatie.getStops() + Utils.getStackTrace(e));
 			MailOperations.sendMail(Utils.getStackTrace(e));
 			success = false;
-
 		}
 
 		return success;

@@ -505,7 +505,7 @@ public class SqlQueries {
 		sqlString.append(" from sapprd.anlz a join sapprd.anla b on b.anln1 = a.anln1 and b.anln2 = a.anln2 and b.mandt=a.mandt ");
 		sqlString.append(" join sapprd.aufk c on c.aufnr = a.caufn and c.mandt=a.mandt ");
 		sqlString.append(" where a.pernr =? ");
-		sqlString.append(" and a.bdatu >= (select to_char(sysdate-5,'YYYYMMDD') from dual) and b.deakt = '00000000' and a.mandt='900' ");
+		sqlString.append(" and a.bdatu >= (select to_char(sysdate-15,'YYYYMMDD') from dual) and b.deakt = '00000000' and a.mandt='900' ");
 		sqlString.append(" order by a.adatu desc ");
 
 		return sqlString.toString();
@@ -728,7 +728,7 @@ public class SqlQueries {
 		StringBuilder sqlString = new StringBuilder();
 
 		sqlString.append(" select distinct nume, filiala, functie, departament, mail from personal where ");
-		sqlString.append(" functie in (select distinct aprobat from functii_non_vanzari where aprobat != 'SMW') order by filiala, functie, departament ");
+		sqlString.append(" functie in (select distinct aprobat from functii_non_vanzari where aprobat not in ('SMW','SMR') ) order by filiala, functie, departament ");
 
 		return sqlString.toString();
 	}
