@@ -728,7 +728,8 @@ public class SqlQueries {
 		StringBuilder sqlString = new StringBuilder();
 
 		sqlString.append(" select distinct nume, filiala, functie, departament, mail from personal where ");
-		sqlString.append(" functie in (select distinct aprobat from functii_non_vanzari where aprobat not in ('SMW','SMR') ) order by filiala, functie, departament ");
+		sqlString.append(
+				" functie in (select distinct aprobat from functii_non_vanzari where aprobat not in ('SMW','SMR') ) order by filiala, functie, departament ");
 
 		return sqlString.toString();
 	}
@@ -847,6 +848,16 @@ public class SqlQueries {
 		StringBuilder sqlString = new StringBuilder();
 
 		sqlString.append(" select mail from personal where cod = ? ");
+
+		return sqlString.toString();
+	}
+
+	public static String getStareGps() {
+		
+		StringBuilder sqlString = new StringBuilder();
+		sqlString.append(" select  to_char(gtime,'dd-Mon-yy HH24:mi:ss') datac, lat from nexus_gps_data d where ");
+		sqlString.append(" d.vcode = (select vcode from our_vehicles where trim(regexp_replace(car_number,'-| ','')) = ?) ");
+		sqlString.append(" and gtime = (select max(gtime) from nexus_gps_data where vcode = d.vcode) ");
 
 		return sqlString.toString();
 	}

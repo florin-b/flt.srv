@@ -157,7 +157,9 @@ public class Constants {
 	public static final String GOOGLE_MAPS_API_KEY_63 = "AIzaSyBbEmOCGKSjyQ3or-DLSq_5Yms9l1DgeXo";
 	
 
-
+	//ggl.arabesque@gmail.com / hxVvaN5t
+	
+	public static final String GOOGLE_PAYED_KEY = "AIzaSyBacSk9khZt7CGoqPe9UZFJGQAjWymAmBg";
 
 	
 	

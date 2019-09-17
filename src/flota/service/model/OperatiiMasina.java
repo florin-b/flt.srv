@@ -11,7 +11,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import flota.service.beans.Distanta;
+import flota.service.beans.StareGps;
 import flota.service.database.DBManager;
+import flota.service.enums.EnumStareGps;
 import flota.service.queries.SqlQueries;
 import flota.service.utils.DateUtils;
 import flota.service.utils.MailOperations;
@@ -267,6 +269,44 @@ public class OperatiiMasina {
 		}
 
 		return listDistante;
+	}
+
+	public StareGps getStareGps(String codAngajat) {
+
+		StareGps stareGps = new StareGps();
+
+		try (Connection conn = new DBManager().getProdDataSource().getConnection();) {
+
+			List<String> listAuto = new OperatiiMasina().getMasiniAngajat(conn, codAngajat);
+
+			if (!listAuto.isEmpty()) {
+
+				stareGps.setNrAuto(listAuto.get(0));
+
+				try (PreparedStatement stmt = conn.prepareStatement(SqlQueries.getStareGps())) {
+
+					stmt.setString(1, listAuto.get(0));
+					stmt.executeQuery();
+
+					ResultSet rs = stmt.getResultSet();
+
+					while (rs.next()) {
+						stareGps.setData(rs.getString(1));
+						stareGps.setStareGps(rs.getDouble(2) > 0 ? EnumStareGps.BUSINESS : EnumStareGps.PERSONAL);
+
+					}
+
+				}
+
+			}
+
+		} catch (SQLException e) {
+			MailOperations.sendMail(e.toString());
+			logger.error(Utils.getStackTrace(e));
+		}
+
+		return stareGps;
+
 	}
 
 }

@@ -15,13 +15,11 @@ import org.apache.logging.log4j.Logger;
 import com.google.maps.model.LatLng;
 
 import flota.service.beans.BeanDelegatieCauta;
-import flota.service.beans.DelegatieNoua;
 import flota.service.beans.PunctTraseu;
 import flota.service.database.DBManager;
-import flota.service.helpers.HelperAprobare;
 import flota.service.model.OperatiiDelegatii;
+import flota.service.model.OperatiiMasina;
 import flota.service.model.OperatiiTraseu;
-import flota.service.model.ServiceDelegatii;
 import flota.service.utils.MapUtils;
 
 public class TestClass {
@@ -30,7 +28,7 @@ public class TestClass {
 
 	public static void main(String[] args) throws SQLException {
 
-		//new OperatiiDelegatii().recalculeazaDelegatie("77306880549");
+		//new OperatiiDelegatii().recalculeazaDelegatie("82365945360");
 
 		// System.out.println(new OperatiiAngajat().getAngajatCategorie("MS10",
 		// "
@@ -55,7 +53,20 @@ public class TestClass {
 		//System.out.println("Modif del: " + new OperatiiDelegatii().getDelegatiiModificare("00000475"));
 		
 		
-
+		/*
+		List<LatLng> coords = new ArrayList<LatLng>();
+		
+		coords.add(new LatLng(45.473149, 27.936426));
+		
+		
+		coords.add(new LatLng(45.785878, 27.802911));
+		
+		System.out.println("REs: " + MapUtils.getAdreseCoordonate(coords));
+		*/
+		
+		
+		System.out.println("Stare gps: " + new OperatiiMasina().getStareGps("00083045"));
+		
 		
 
 	}

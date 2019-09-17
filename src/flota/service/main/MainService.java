@@ -30,6 +30,7 @@ import flota.service.beans.DelegatieModifAntet;
 import flota.service.beans.DelegatieModifDetalii;
 import flota.service.beans.DelegatieNoua;
 import flota.service.beans.PozitieAngajat;
+import flota.service.beans.StareGps;
 import flota.service.beans.TestBean;
 import flota.service.beans.TestObject;
 import flota.service.beans.Traseu;
@@ -107,7 +108,7 @@ public class MainService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<BeanDelegatieAprobare> afiseazaDelegatiiAprobare(@QueryParam("tipAngajat") String tipAngajat, @QueryParam("unitLog") String unitLog,
 			@QueryParam("codDepart") String codDepart) {
-		
+
 		return new OperatiiDelegatii().getDelegatiiAprobari(tipAngajat, unitLog, codDepart);
 
 	}
@@ -142,14 +143,11 @@ public class MainService {
 			@QueryParam("dataStop") String dataStop, @QueryParam("tipAngajat") String tipAngajat, @QueryParam("unitLog") String unitLog,
 			@QueryParam("codDepart") String codDepart, @QueryParam("tipAfis") String tipAfis) {
 
-		
 		if (tipAfis != null && tipAfis.equalsIgnoreCase("P"))
 			return new OperatiiDelegatii().afiseazaDelegatiiProprii(codAngajat, dataStart, dataStop);
 		else if (tipAfis != null && tipAfis.equalsIgnoreCase("S"))
 			return new OperatiiDelegatii().afiseazaDelegatiiSubord(dataStart, dataStop, tipAngajat, unitLog, codDepart);
-		
-		
-		
+
 		return new ArrayList<>();
 
 	}
@@ -302,6 +300,16 @@ public class MainService {
 	public List<PozitieAngajat> getPozitieAngajat(@QueryParam("codAngajat") String codAngajat) {
 
 		return new PozitieMasina().getPozitieAngajat(codAngajat);
+
+	}
+
+	@Path("getStareGps")
+	@GET
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StareGps getStareGps(@QueryParam("codAngajat") String codAngajat) {
+
+		return new OperatiiMasina().getStareGps(codAngajat);
 
 	}
 
