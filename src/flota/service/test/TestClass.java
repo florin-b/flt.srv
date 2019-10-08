@@ -28,7 +28,7 @@ public class TestClass {
 
 	public static void main(String[] args) throws SQLException {
 
-		//new OperatiiDelegatii().recalculeazaDelegatie("82365945360");
+		new OperatiiDelegatii().recalculeazaDelegatie("87292011487");
 
 		// System.out.println(new OperatiiAngajat().getAngajatCategorie("MS10",
 		// "
@@ -65,9 +65,9 @@ public class TestClass {
 		*/
 		
 		
-		System.out.println("Stare gps: " + new OperatiiMasina().getStareGps("00083045"));
+		//System.out.println("Stare gps: " + new OperatiiMasina().getStareGps("00083045"));
 		
-		
+		//js?key
 
 	}
 

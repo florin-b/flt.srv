@@ -154,3 +154,49 @@
 	at flota.service.model.OperatiiDelegatii.recalculeazaDelegatie(OperatiiDelegatii.java:934)
 	at flota.service.test.TestClass.main(TestClass.java:33)
  , key = 26
+08-Oct-2019 16:15:01 [main] ERROR flota.service.utils.MailOperations - com.sun.mail.util.MailConnectException: Couldn't connect to host, port: localhost, 25; timeout -1;
+  nested exception is:
+	java.net.ConnectException: Connection refused: connect
+08-Oct-2019 16:15:01 [main] ERROR flota.service.model.OperatiiDelegatii - java.sql.SQLSyntaxErrorException: ORA-00933: comandã SQL terminatã impropriu
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:447)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:396)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:951)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:513)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:227)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:531)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:208)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:886)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:1175)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1296)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3613)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3657)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1495)
+	at flota.service.model.OperatiiDelegatii.getPuncteTraseu(OperatiiDelegatii.java:344)
+	at flota.service.model.OperatiiTraseu.determinaSfarsitDelegatie(OperatiiTraseu.java:118)
+	at flota.service.model.OperatiiDelegatii.recalculeazaDelegatie(OperatiiDelegatii.java:934)
+	at flota.service.test.TestClass.main(TestClass.java:31)
+
+08-Oct-2019 16:16:10 [main] ERROR flota.service.utils.MailOperations - com.sun.mail.util.MailConnectException: Couldn't connect to host, port: localhost, 25; timeout -1;
+  nested exception is:
+	java.net.ConnectException: Connection refused: connect
+08-Oct-2019 16:16:10 [main] ERROR flota.service.model.OperatiiDelegatii - java.sql.SQLSyntaxErrorException: ORA-00933: comandã SQL terminatã impropriu
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:447)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:396)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:951)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:513)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:227)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:531)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:208)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:886)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:1175)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1296)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3613)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3657)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1495)
+	at flota.service.model.OperatiiDelegatii.getPuncteTraseu(OperatiiDelegatii.java:344)
+	at flota.service.model.OperatiiTraseu.determinaSfarsitDelegatie(OperatiiTraseu.java:118)
+	at flota.service.model.OperatiiDelegatii.recalculeazaDelegatie(OperatiiDelegatii.java:934)
+	at flota.service.test.TestClass.main(TestClass.java:31)
+

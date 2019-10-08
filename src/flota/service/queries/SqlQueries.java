@@ -245,9 +245,13 @@ public class SqlQueries {
 
 		StringBuilder sqlString = new StringBuilder();
 
-		sqlString.append(" select r.judet, r.localitate, r.vizitat, nvl(l.latitudine,'-1') lat, nvl(l.longitudine,'-1') lon, r.poz from ");
-		sqlString.append(" sapprd.zdelegatieruta r, sapprd.zcoordlocalitati l where r.id = ? ");
-		sqlString.append(" and trim(r.judet) = trim(l.judet(+)) and trim(r.localitate) = trim(l.localitate(+)) ");
+		sqlString.append(" select r.judet, r.localitate, r.vizitat , ");
+		sqlString.append("  (select  nvl(l.latitudine,'-1') from sapprd.zcoordlocalitati l where ");
+		sqlString.append(" trim(r.judet) = trim(l.judet) and trim(r.localitate) = trim(l.localitate) and rownum=1) lat, ");
+		sqlString.append(" (select  nvl(l.longitudine,'-1') from sapprd.zcoordlocalitati l where ");
+		sqlString.append(" trim(r.judet) = trim(l.judet) and trim(r.localitate) = trim(l.localitate) and rownum=1) lon, ");
+		sqlString.append(" r.poz from ");
+		sqlString.append(" sapprd.zdelegatieruta r where r.id = ? ");
 		sqlString.append(" order by to_number(r.poz) ");
 
 		return sqlString.toString();
@@ -853,7 +857,7 @@ public class SqlQueries {
 	}
 
 	public static String getStareGps() {
-		
+
 		StringBuilder sqlString = new StringBuilder();
 		sqlString.append(" select  to_char(gtime,'dd-Mon-yy HH24:mi:ss') datac, lat from nexus_gps_data d where ");
 		sqlString.append(" d.vcode = (select vcode from our_vehicles where trim(regexp_replace(car_number,'-| ','')) = ?) ");
