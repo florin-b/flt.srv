@@ -35,7 +35,7 @@ public class SqlQueries {
 		return sqlString.toString();
 	}
 
-	public static String getDelegatiiAprobareHeaderVanzari(String unitLogQs, String departQs) {
+	public static String getDelegatiiAprobareHeaderVanzari_old(String unitLogQs, String departQs) {
 		StringBuilder sqlString = new StringBuilder();
 
 		sqlString.append(" select h.id, h.distreal, h.codangajat, h.data_plecare, h.ora_plecare, ag.nume, h.distcalc, ");
@@ -53,6 +53,28 @@ public class SqlQueries {
 
 		return sqlString.toString();
 	}
+	
+	
+	public static String getDelegatiiAprobareHeaderVanzari(String unitLogQs, String departQs) {
+		StringBuilder sqlString = new StringBuilder();
+
+		sqlString.append(" select h.id, h.distreal, h.codangajat, h.data_plecare, h.ora_plecare, ag.nume, h.distcalc, ");
+		sqlString.append(" h.distrespins, h.data_sosire, h.distreal, h.distrecalc, f.cod codAprob  ");
+		sqlString.append(" from sapprd.zdelegatiehead h, agenti ag, functii_non_vanzari f  where h.mandt='900' and ");
+		sqlString.append(" to_date(data_sosire,'yyyymmdd')>= to_date(sysdate - 45) and ");
+		sqlString.append(" h.idaprob in (select fid from functii_non_vanzari where aprobat=? or cod='WKND') ");
+		sqlString.append(" and h.idaprob = f.fid ");
+		sqlString.append(" and ag.filiala in ");
+		sqlString.append(unitLogQs);
+		sqlString.append(" and substr(ag.divizie,0,2) in ");
+		sqlString.append(departQs);
+		sqlString.append(" and h.codangajat = ag.cod ");
+		sqlString.append(" order by h.id ");
+
+		return sqlString.toString();
+	}	
+	
+	
 
 	public static String getDelegatiiAprobareHeaderNONVanzari(String unitLogQs) {
 		StringBuilder sqlString = new StringBuilder();
@@ -246,10 +268,10 @@ public class SqlQueries {
 		StringBuilder sqlString = new StringBuilder();
 
 		sqlString.append(" select r.judet, r.localitate, r.vizitat , ");
-		sqlString.append("  (select  nvl(l.latitudine,'-1') from sapprd.zcoordlocalitati l where ");
-		sqlString.append(" trim(r.judet) = trim(l.judet) and trim(r.localitate) = trim(l.localitate) and rownum=1) lat, ");
-		sqlString.append(" (select  nvl(l.longitudine,'-1') from sapprd.zcoordlocalitati l where ");
-		sqlString.append(" trim(r.judet) = trim(l.judet) and trim(r.localitate) = trim(l.localitate) and rownum=1) lon, ");
+		sqlString.append(" nvl( (select  nvl(l.latitudine,'-1') from sapprd.zcoordlocalitati l where ");
+		sqlString.append(" trim(r.judet) = trim(l.judet) and trim(r.localitate) = trim(l.localitate) and rownum=1),'-1') lat, ");
+		sqlString.append(" nvl((select  nvl(l.longitudine,'-1') from sapprd.zcoordlocalitati l where ");
+		sqlString.append(" trim(r.judet) = trim(l.judet) and trim(r.localitate) = trim(l.localitate) and rownum=1),'-1') lon, ");
 		sqlString.append(" r.poz from ");
 		sqlString.append(" sapprd.zdelegatieruta r where r.id = ? ");
 		sqlString.append(" order by to_number(r.poz) ");
