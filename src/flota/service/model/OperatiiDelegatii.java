@@ -38,6 +38,8 @@ public class OperatiiDelegatii {
 
 	public synchronized boolean adaugaDelegatie(DelegatieNoua delegatie) {
 
+
+		System.out.println("adaugaDelegatie " + delegatie);
 		
 		boolean success = true;
 

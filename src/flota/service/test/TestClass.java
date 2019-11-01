@@ -15,10 +15,10 @@ import org.apache.logging.log4j.Logger;
 import com.google.maps.model.LatLng;
 
 import flota.service.beans.BeanDelegatieCauta;
+import flota.service.beans.DelegatieNoua;
 import flota.service.beans.PunctTraseu;
 import flota.service.database.DBManager;
 import flota.service.model.OperatiiDelegatii;
-import flota.service.model.OperatiiMasina;
 import flota.service.model.OperatiiTraseu;
 import flota.service.utils.MapUtils;
 
@@ -28,7 +28,7 @@ public class TestClass {
 
 	public static void main(String[] args) throws SQLException {
 
-		new OperatiiDelegatii().recalculeazaDelegatie("87292011487");
+		new OperatiiDelegatii().recalculeazaDelegatie("87294782793");
 
 		// System.out.println(new OperatiiAngajat().getAngajatCategorie("MS10",
 		// "
@@ -36,7 +36,7 @@ public class TestClass {
 		// ",
 		// ""));
 
-		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("DZ" , "GL10" , ""));
+		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("DD" , "BU90" , "11"));
 
 		// new ServiceDelegatii().calculeazaKmSfarsitLuna();
 
@@ -68,6 +68,23 @@ public class TestClass {
 		//System.out.println("Stare gps: " + new OperatiiMasina().getStareGps("00083045"));
 		
 		//js?key
+		
+		
+		//adaugaDelegatie DelegatieNoua [codAngajat=00077313, tipAngajat=CVR, dataP=21-10-2019, oraP=0500, dataS=21-10-2019, distcalc=21, stops=GALATI  /  GALATI,BRAILA  /  BRAILA, nrAuto=GL-09-RRG, distreal=0, unitLog=BU90, id=null]
+
+		DelegatieNoua delegatie = new DelegatieNoua();
+		
+		delegatie.setCodAngajat("00077313");
+		delegatie.setTipAngajat("CVR");
+		delegatie.setDataP("21-10-2019");
+		delegatie.setOraP("0500");
+		delegatie.setDataS("21-10-2019");
+		delegatie.setNrAuto("GL-09-RRG");
+		delegatie.setDistcalc("21");
+				
+				
+		//new OperatiiDelegatii().adaugaDelegatie(delegatie);
+				
 
 	}
 

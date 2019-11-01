@@ -200,3 +200,68 @@
 	at flota.service.model.OperatiiDelegatii.recalculeazaDelegatie(OperatiiDelegatii.java:934)
 	at flota.service.test.TestClass.main(TestClass.java:31)
 
+14-Oct-2019 12:54:49 [main] ERROR flota.service.utils.MapUtils - getAdreseCoordonate -> java.lang.ArrayIndexOutOfBoundsException: 0
+	at flota.service.utils.MapUtils.getAdreseCoordonate(MapUtils.java:295)
+	at flota.service.model.OperatiiTraseu.recalculeazaTraseuTeoretic(OperatiiTraseu.java:288)
+	at flota.service.model.OperatiiTraseu.actualizeazaSfarsitDelegatie(OperatiiTraseu.java:255)
+	at flota.service.model.OperatiiTraseu.determinaSfarsitDelegatie(OperatiiTraseu.java:188)
+	at flota.service.model.OperatiiDelegatii.verificaDelegatiiTerminate(OperatiiDelegatii.java:676)
+	at flota.service.model.OperatiiDelegatii.getDelegatiiAprobari(OperatiiDelegatii.java:117)
+	at flota.service.test.TestClass.main(TestClass.java:39)
+ , key = 36
+14-Oct-2019 12:54:51 [main] ERROR flota.service.utils.MailOperations - com.sun.mail.util.MailConnectException: Couldn't connect to host, port: localhost, 25; timeout -1;
+  nested exception is:
+	java.net.ConnectException: Connection refused: connect
+14-Oct-2019 12:54:51 [main] ERROR flota.service.utils.MapUtils - getAdreseCoordonate -> java.lang.ArrayIndexOutOfBoundsException: 0
+	at flota.service.utils.MapUtils.getAdreseCoordonate(MapUtils.java:295)
+	at flota.service.model.OperatiiTraseu.recalculeazaTraseuTeoretic(OperatiiTraseu.java:288)
+	at flota.service.model.OperatiiTraseu.actualizeazaSfarsitDelegatie(OperatiiTraseu.java:255)
+	at flota.service.model.OperatiiTraseu.determinaSfarsitDelegatie(OperatiiTraseu.java:188)
+	at flota.service.model.OperatiiDelegatii.verificaDelegatiiTerminate(OperatiiDelegatii.java:676)
+	at flota.service.model.OperatiiDelegatii.getDelegatiiAprobari(OperatiiDelegatii.java:117)
+	at flota.service.test.TestClass.main(TestClass.java:39)
+ , key = 36
+14-Oct-2019 12:54:52 [main] ERROR flota.service.utils.MailOperations - com.sun.mail.util.MailConnectException: Couldn't connect to host, port: localhost, 25; timeout -1;
+  nested exception is:
+	java.net.ConnectException: Connection refused: connect
+14-Oct-2019 12:54:53 [main] ERROR flota.service.utils.MailOperations - com.sun.mail.util.MailConnectException: Couldn't connect to host, port: localhost, 25; timeout -1;
+  nested exception is:
+	java.net.ConnectException: Connection refused: connect
+14-Oct-2019 12:54:53 [main] ERROR flota.service.utils.MapUtils - getDistantaTraseuCoordonate -> java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at flota.service.utils.MapUtils.getDistantaTraseuCoordonate(MapUtils.java:241)
+	at flota.service.model.OperatiiTraseu.recalculeazaTraseuTeoretic(OperatiiTraseu.java:290)
+	at flota.service.model.OperatiiTraseu.actualizeazaSfarsitDelegatie(OperatiiTraseu.java:255)
+	at flota.service.model.OperatiiTraseu.determinaSfarsitDelegatie(OperatiiTraseu.java:188)
+	at flota.service.model.OperatiiDelegatii.verificaDelegatiiTerminate(OperatiiDelegatii.java:676)
+	at flota.service.model.OperatiiDelegatii.getDelegatiiAprobari(OperatiiDelegatii.java:117)
+	at flota.service.test.TestClass.main(TestClass.java:39)
+
+01-Nov-2019 12:53:38 [main] ERROR flota.service.model.OperatiiTraseu - java.sql.SQLException: Missing IN or OUT parameter at index:: 4
+	at oracle.jdbc.driver.OraclePreparedStatement.processCompletedBindRow(OraclePreparedStatement.java:1844)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3608)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3657)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1495)
+	at flota.service.model.OperatiiTraseu.determinaSfarsitDelegatie(OperatiiTraseu.java:118)
+	at flota.service.model.OperatiiDelegatii.recalculeazaDelegatie(OperatiiDelegatii.java:936)
+	at flota.service.test.TestClass.main(TestClass.java:31)
+
+01-Nov-2019 12:53:40 [main] ERROR flota.service.utils.MailOperations - com.sun.mail.util.MailConnectException: Couldn't connect to host, port: localhost, 25; timeout -1;
+  nested exception is:
+	java.net.ConnectException: Connection refused: connect
+01-Nov-2019 15:16:59 [main] ERROR flota.service.model.OperatiiTraseu - java.sql.SQLException: Missing IN or OUT parameter at index:: 4
+	at oracle.jdbc.driver.OraclePreparedStatement.processCompletedBindRow(OraclePreparedStatement.java:1844)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3608)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3657)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1495)
+	at flota.service.model.OperatiiTraseu.getCoordOpririDelegatie(OperatiiTraseu.java:363)
+	at flota.service.model.OperatiiTraseu.recalculeazaTraseuTeoretic(OperatiiTraseu.java:288)
+	at flota.service.model.OperatiiTraseu.actualizeazaSfarsitDelegatie(OperatiiTraseu.java:261)
+	at flota.service.model.OperatiiTraseu.determinaSfarsitDelegatie(OperatiiTraseu.java:194)
+	at flota.service.model.OperatiiDelegatii.recalculeazaDelegatie(OperatiiDelegatii.java:936)
+	at flota.service.test.TestClass.main(TestClass.java:31)
+
+01-Nov-2019 15:17:01 [main] ERROR flota.service.utils.MailOperations - com.sun.mail.util.MailConnectException: Couldn't connect to host, port: localhost, 25; timeout -1;
+  nested exception is:
+	java.net.ConnectException: Connection refused: connect

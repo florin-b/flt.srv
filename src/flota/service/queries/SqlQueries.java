@@ -53,8 +53,7 @@ public class SqlQueries {
 
 		return sqlString.toString();
 	}
-	
-	
+
 	public static String getDelegatiiAprobareHeaderVanzari(String unitLogQs, String departQs) {
 		StringBuilder sqlString = new StringBuilder();
 
@@ -64,7 +63,7 @@ public class SqlQueries {
 		sqlString.append(" to_date(data_sosire,'yyyymmdd')>= to_date(sysdate - 45) and ");
 		sqlString.append(" h.idaprob in (select fid from functii_non_vanzari where aprobat=? or cod='WKND') ");
 		sqlString.append(" and h.idaprob = f.fid ");
-		sqlString.append(" and ag.filiala in ");
+		sqlString.append(" and ag.centru_cost in ");
 		sqlString.append(unitLogQs);
 		sqlString.append(" and substr(ag.divizie,0,2) in ");
 		sqlString.append(departQs);
@@ -72,9 +71,7 @@ public class SqlQueries {
 		sqlString.append(" order by h.id ");
 
 		return sqlString.toString();
-	}	
-	
-	
+	}
 
 	public static String getDelegatiiAprobareHeaderNONVanzari(String unitLogQs) {
 		StringBuilder sqlString = new StringBuilder();
@@ -139,7 +136,7 @@ public class SqlQueries {
 		sqlString.append(" select h.id ");
 		sqlString.append(" from sapprd.zdelegatiehead h, agenti ag where h.mandt='900' and ");
 		sqlString.append(" h.idaprob in (select fid from functii_non_vanzari where aprobat=? or cod='WKND') ");
-		sqlString.append(" and ag.filiala in ");
+		sqlString.append(" and ag.centru_cost in ");
 		sqlString.append(unitLogQs);
 		sqlString.append(" and substr(ag.divizie,0,2)=? and h.codangajat = ag.cod ");
 		sqlString.append(" and not exists (select 1 from sapprd.zdelstataprob b where b.iddelegatie = h.id and status in ('2','6')) ");
@@ -307,10 +304,15 @@ public class SqlQueries {
 
 		sqlString.append(" select x.* from (select rownum idt, to_char(gtime,'HH24:mi') gtime, lat, lon, speed, km from nexus_gps_data ");
 		sqlString.append(" where vcode in ");
-		sqlString.append(" (select vcode from our_vehicles n, sapprd.zdelegatiehead z where ");
+		sqlString.append(" (select vcode from nexus_coresp n, sapprd.zdelegatiehead z where ");
+		sqlString.append(" trim(regexp_replace(n.car_number,'-| ','')) = trim(regexp_replace(z.nrauto,'-| ','')) and z.id =? ");
+		sqlString.append(" union ");
+		sqlString.append(" select old_vcode from nexus_coresp n, sapprd.zdelegatiehead z where ");
 		sqlString.append(" trim(regexp_replace(n.car_number,'-| ','')) = trim(regexp_replace(z.nrauto,'-| ','')) and z.id =? )");
 		sqlString.append(" and gtime between to_date(?,'dd-mm-yyyy HH24:mi') ");
 		sqlString.append(" and to_date(?,'dd-mm-yyyy HH24:mi')  ) x where remainder(x.idt,2) = 0 order by x.km ");
+
+		System.out.println("getCoordonateTraseu: " + sqlString.toString());
 
 		return sqlString.toString();
 	}
@@ -321,8 +323,8 @@ public class SqlQueries {
 
 		sqlString.append(
 				" select x.* from (select rownum idt, to_char(d.gtime,'dd-mm-yyyy HH24:mi') gtime, d.lat, d.lon, d.speed, d.km from nexus_gps_data d, ");
-		sqlString.append(" our_vehicles n ");
-		sqlString.append(" where d.vcode = n.vcode and ");
+		sqlString.append(" nexus_coresp n ");
+		sqlString.append(" where (d.vcode = n.vcode or d.vcode = n.old_vcode) and ");
 		sqlString.append(" trim(regexp_replace(n.car_number,'-| ','')) = trim(regexp_replace(?,'-| ','')) and ");
 		sqlString.append(" trunc(d.gtime) between to_date(?,'dd-mm-yyyy HH24:mi') and ");
 		sqlString.append(" to_date(?,'dd-mm-yyyy HH24:mi')  ) x where remainder(x.idt,1) = 0 order by x.gtime ");
@@ -440,7 +442,10 @@ public class SqlQueries {
 
 		sqlString.append(" select  lat, lon, km, gtime from nexus_gps_data where ");
 		sqlString.append(" vcode in ");
-		sqlString.append(" (select vcode from our_vehicles n, sapprd.zdelegatiehead z where ");
+		sqlString.append(" (select vcode from nexus_coresp n, sapprd.zdelegatiehead z where ");
+		sqlString.append(" trim(regexp_replace(n.car_number,'-| ','')) = trim(regexp_replace(z.nrauto,'-| ','')) and z.id =?  ");
+		sqlString.append(" union ");
+		sqlString.append(" select old_vcode from nexus_coresp n, sapprd.zdelegatiehead z where ");
 		sqlString.append(" trim(regexp_replace(n.car_number,'-| ','')) = trim(regexp_replace(z.nrauto,'-| ','')) and z.id =? ) ");
 		sqlString.append(" and gtime BETWEEN to_date(?, 'dd-mm-yyyy hh24:mi:ss') and ");
 		sqlString.append(" to_date(?, 'dd-mm-yyyy hh24:mi:ss')  and speed = 0 ");
@@ -627,6 +632,17 @@ public class SqlQueries {
 		return sqlString.toString();
 	}
 
+	public static String getCodAprobareCVR() {
+		StringBuilder sqlString = new StringBuilder();
+
+		sqlString.append(" select distinct f.fid, f.aprobat from personal p, functii_non_vanzari f ");
+		sqlString.append(" where p.filiala = (select filiala from personal where cod=?) ");
+		sqlString.append(" and p.functie in ('SMR','DD') and p.functie = f.aprobat and f.cod=? ");
+
+		return sqlString.toString();
+
+	}
+
 	public static String getCodAprobareKA08() {
 		StringBuilder sqlString = new StringBuilder();
 
@@ -660,7 +676,7 @@ public class SqlQueries {
 		StringBuilder sqlString = new StringBuilder();
 
 		sqlString.append(" select distinct  n.vcode ");
-		sqlString.append(" from our_vehicles n, sapprd.anlz a , sapprd.anla b,sapprd.aufk c where ");
+		sqlString.append(" from nexus_coresp n, sapprd.anlz a , sapprd.anla b,sapprd.aufk c where ");
 		sqlString.append(" a.mandt='900' and b.mandt='900' and c.mandt='900' and b.anln1 = a.anln1 ");
 		sqlString.append(" and b.anln2 = a.anln2 and b.mandt=a.mandt ");
 		sqlString.append(" and c.aufnr = a.caufn and c.mandt=a.mandt ");
@@ -675,7 +691,9 @@ public class SqlQueries {
 	public static String getNrAutoCodGps() {
 		StringBuilder sqlString = new StringBuilder();
 
-		sqlString.append(" select car_number from our_vehicles where vcode=? ");
+		sqlString.append(" select nexus_coresp from our_vehicles where vcode=? or old_vcode = ?");
+		
+		System.out.println("getNrAutoCodGps: " + sqlString.toString());
 
 		return sqlString.toString();
 	}
@@ -882,7 +900,7 @@ public class SqlQueries {
 
 		StringBuilder sqlString = new StringBuilder();
 		sqlString.append(" select  to_char(gtime,'dd-Mon-yy HH24:mi:ss') datac, lat from nexus_gps_data d where ");
-		sqlString.append(" d.vcode = (select vcode from our_vehicles where trim(regexp_replace(car_number,'-| ','')) = ?) ");
+		sqlString.append(" d.vcode = (select vcode from nexus_coresp where trim(regexp_replace(car_number,'-| ','')) = ?) ");
 		sqlString.append(" and gtime = (select max(gtime) from nexus_gps_data where vcode = d.vcode) ");
 
 		return sqlString.toString();

@@ -226,6 +226,7 @@ public class OperatiiMasina {
 		try (PreparedStatement stmt = conn.prepareStatement(SqlQueries.getNrAutoCodGps());) {
 
 			stmt.setString(1, codDispGps);
+			stmt.setString(2, codDispGps);
 			stmt.executeQuery();
 
 			ResultSet rs = stmt.getResultSet();
