@@ -38,9 +38,8 @@ public class OperatiiDelegatii {
 
 	public synchronized boolean adaugaDelegatie(DelegatieNoua delegatie) {
 
-
 		System.out.println("adaugaDelegatie " + delegatie);
-		
+
 		boolean success = true;
 
 		try (Connection conn = new DBManager().getProdDataSource().getConnection();
@@ -525,8 +524,14 @@ public class OperatiiDelegatii {
 
 		if (isPersVanzari)
 			sqlString = SqlQueries.afiseazaDelegatiiSubordVanzari(unitLogQs, departQs);
-		else
-			sqlString = SqlQueries.afiseazaDelegatiiSubordNONVanzari(unitLogQs);
+		else {
+			if (tipAngajat.equals("DJ"))
+				sqlString = SqlQueries.afiseazaDelegatiiSubordDirectorJuridic();
+			else
+				sqlString = SqlQueries.afiseazaDelegatiiSubordNONVanzari(unitLogQs);
+		}
+
+		System.out.println("afiseazaDelegatiisubord: " + sqlString);
 
 		try (Connection conn = new DBManager().getProdDataSource().getConnection();
 				PreparedStatement stmt = conn.prepareStatement(sqlString, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);) {
@@ -547,13 +552,19 @@ public class OperatiiDelegatii {
 				stmt.setString(pos++, DateUtils.formatDateSap(dataStart));
 				stmt.setString(pos++, DateUtils.formatDateSap(dataStop));
 			} else {
-				stmt.setString(1, tipAngajat);
 
-				for (int ii = 0; ii < unitLogs.length; ii++)
-					stmt.setString(pos++, unitLogs[ii]);
+				if (tipAngajat.equals("DJ")) {
+					stmt.setString(1, DateUtils.formatDateSap(dataStart));
+					stmt.setString(2, DateUtils.formatDateSap(dataStop));
+				} else {
+					stmt.setString(1, tipAngajat);
 
-				stmt.setString(pos++, DateUtils.formatDateSap(dataStart));
-				stmt.setString(pos++, DateUtils.formatDateSap(dataStop));
+					for (int ii = 0; ii < unitLogs.length; ii++)
+						stmt.setString(pos++, unitLogs[ii]);
+
+					stmt.setString(pos++, DateUtils.formatDateSap(dataStart));
+					stmt.setString(pos++, DateUtils.formatDateSap(dataStop));
+				}
 			}
 
 			stmt.executeQuery();

@@ -53,7 +53,6 @@ public class OperatiiTraseu {
 			String dataSos = delegatie.getDataSosire() + " " + "23:59";
 
 			stmt.setString(1, idDelegatie);
-
 			stmt.setString(2, dataPlec);
 			stmt.setString(3, dataSos);
 
@@ -107,11 +106,8 @@ public class OperatiiTraseu {
 			dataSosire = delegatie.getDataSosire() + " " + "23:59";
 
 			stmt.setString(1, idDelegatie);
-			
-			stmt.setString(2, idDelegatie);
-
-			stmt.setString(3, dataPlecare);
-			stmt.setString(4, dataSosire);
+			stmt.setString(2, dataPlecare);
+			stmt.setString(3, dataSosire);
 			
 			
 			System.out.println("determinaSfarsitDel: " + idDelegatie + " , " + dataPlecare + " , " + dataSosire);
@@ -357,9 +353,8 @@ public class OperatiiTraseu {
 		try (PreparedStatement stmt = conn.prepareStatement(SqlQueries.getCoordonateOpriri());) {
 
 			stmt.setString(1, idDelegatie);
-			stmt.setString(2, idDelegatie);
-			stmt.setString(3, dataStart);
-			stmt.setString(4, dataStop);
+			stmt.setString(2, dataStart);
+			stmt.setString(3, dataStop);
 
 			stmt.executeQuery();
 

@@ -18,6 +18,7 @@ import flota.service.beans.BeanDelegatieCauta;
 import flota.service.beans.DelegatieNoua;
 import flota.service.beans.PunctTraseu;
 import flota.service.database.DBManager;
+import flota.service.helpers.HelperAprobare;
 import flota.service.model.OperatiiDelegatii;
 import flota.service.model.OperatiiTraseu;
 import flota.service.utils.MapUtils;
@@ -28,7 +29,7 @@ public class TestClass {
 
 	public static void main(String[] args) throws SQLException {
 
-		new OperatiiDelegatii().recalculeazaDelegatie("87294782793");
+		//new OperatiiDelegatii().recalculeazaDelegatie("108111329649");
 
 		// System.out.println(new OperatiiAngajat().getAngajatCategorie("MS10",
 		// "
@@ -36,55 +37,75 @@ public class TestClass {
 		// ",
 		// ""));
 
-		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("DD" , "BU90" , "11"));
+		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("SDIP", "IS10", "15"));
 
-		// new ServiceDelegatii().calculeazaKmSfarsitLuna();
+		//new ServiceDelegatii().calculeazaKmSfarsitLuna();
 
 		// new TestClass().accident();
 
 		// testRecalculeaza();
-		
-		
-		 //testNrOpriri();
-		
-		
-		 //System.out.println("Del:" + new OperatiiDelegatii().afiseazaDelegatiiProprii("00000475", "29-05-2019", "04-06-2019"));
-		
-		//System.out.println("Modif del: " + new OperatiiDelegatii().getDelegatiiModificare("00000475"));
-		
-		
+
+		// testNrOpriri();
+
+		// System.out.println("Del:" + new
+		// OperatiiDelegatii().afiseazaDelegatiiProprii("00000475",
+		// "29-05-2019", "04-06-2019"));
+
+		// System.out.println("Modif del: " + new
+		// OperatiiDelegatii().getDelegatiiModificare("00000475"));
+
 		/*
-		List<LatLng> coords = new ArrayList<LatLng>();
-		
-		coords.add(new LatLng(45.473149, 27.936426));
-		
-		
-		coords.add(new LatLng(45.785878, 27.802911));
-		
-		System.out.println("REs: " + MapUtils.getAdreseCoordonate(coords));
-		*/
-		
-		
-		//System.out.println("Stare gps: " + new OperatiiMasina().getStareGps("00083045"));
-		
-		//js?key
-		
-		
-		//adaugaDelegatie DelegatieNoua [codAngajat=00077313, tipAngajat=CVR, dataP=21-10-2019, oraP=0500, dataS=21-10-2019, distcalc=21, stops=GALATI  /  GALATI,BRAILA  /  BRAILA, nrAuto=GL-09-RRG, distreal=0, unitLog=BU90, id=null]
+		 * List<LatLng> coords = new ArrayList<LatLng>();
+		 * 
+		 * coords.add(new LatLng(45.473149, 27.936426));
+		 * 
+		 * 
+		 * coords.add(new LatLng(45.785878, 27.802911));
+		 * 
+		 * System.out.println("REs: " + MapUtils.getAdreseCoordonate(coords));
+		 */
+
+		// System.out.println("Stare gps: " + new
+		// OperatiiMasina().getStareGps("00083045"));
+
+		// adaugaDelegatie DelegatieNoua [codAngajat=00077313, tipAngajat=CVR,
+		// dataP=21-10-2019, oraP=0500, dataS=21-10-2019, distcalc=21,
+		// stops=GALATI / GALATI,BRAILA / BRAILA, nrAuto=GL-09-RRG, distreal=0,
+		// unitLog=BU90, id=null]
 
 		DelegatieNoua delegatie = new DelegatieNoua();
-		
-		delegatie.setCodAngajat("00077313");
-		delegatie.setTipAngajat("CVR");
+
+		delegatie.setCodAngajat("00086447");
+		delegatie.setTipAngajat("CVIP");
 		delegatie.setDataP("21-10-2019");
 		delegatie.setOraP("0500");
 		delegatie.setDataS("21-10-2019");
-		delegatie.setNrAuto("GL-09-RRG");
+		delegatie.setNrAuto("B-72-LWN");
 		delegatie.setDistcalc("21");
-				
-				
-		//new OperatiiDelegatii().adaugaDelegatie(delegatie);
-				
+
+		getCodAprobare();
+
+		// new OperatiiDelegatii().adaugaDelegatie(delegatie);
+		
+		/*
+		MailOperations.sendMail("Flota JOB", "Start");
+		new OperatiiDelegatii().verificaDelegatiiTerminateCompanie();
+		MailOperations.sendMail("Flota JOB", "Stop");
+		*/
+		
+		
+
+	}
+
+	public static void getCodAprobare() {
+
+		try (Connection conn = new DBManager().getProdDataSource().getConnection();) {
+
+			System.out.println("Cod aprobare: " + HelperAprobare.getCodAprobareCVIP(conn, "00080378","CVIP"));
+
+		} catch (SQLException e) {
+
+		}
 
 	}
 
@@ -213,10 +234,9 @@ public class TestClass {
 			Connection conn = new DBManager().getProdDataSource().getConnection();
 
 			List<LatLng> coordonateOpriri = new OperatiiTraseu().getCoordOpririDelegatie(conn, "70486767680", "26.03.2019 00:00", "26.03.2019 23:59");
-			
+
 			System.out.println("Size= " + coordonateOpriri.size());
-			
-			
+
 			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex.toString());

@@ -18,6 +18,7 @@ import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -45,6 +46,8 @@ import flota.service.model.PozitieMasina;
 import flota.service.model.ServiceDelegatii;
 import flota.service.utils.MailOperations;
 
+
+
 @Path("delegatii")
 public class MainService {
 
@@ -67,7 +70,7 @@ public class MainService {
 	public Response localitatiPost(@FormParam("codJudet") String codJudet) {
 		String listLocs = new OperatiiAdresa().getLocalitatiJudet(codJudet).toString();
 
-		MailOperations.sendMail("codJudet: " + codJudet);
+		MailOperations.sendMailName("codJudet2: " + codJudet);
 
 		return Response.status(200).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization").header("Access-Control-Allow-Credentials", "true")
@@ -143,6 +146,7 @@ public class MainService {
 			@QueryParam("dataStop") String dataStop, @QueryParam("tipAngajat") String tipAngajat, @QueryParam("unitLog") String unitLog,
 			@QueryParam("codDepart") String codDepart, @QueryParam("tipAfis") String tipAfis) {
 
+		
 		if (tipAfis != null && tipAfis.equalsIgnoreCase("P"))
 			return new OperatiiDelegatii().afiseazaDelegatiiProprii(codAngajat, dataStart, dataStop);
 		else if (tipAfis != null && tipAfis.equalsIgnoreCase("S"))

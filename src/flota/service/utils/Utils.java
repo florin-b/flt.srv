@@ -122,6 +122,7 @@ public class Utils {
 		case "SMG":
 		case "SMR":
 		case "SMW":
+		case "SDIP":
 			isVanzari = true;
 			break;
 		default:
