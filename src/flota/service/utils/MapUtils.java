@@ -272,8 +272,6 @@ public class MapUtils {
 		Random rand = new Random(System.currentTimeMillis());
 		int value = rand.nextInt((MAX_KEYS - 1) + 1) + 1;
 
-		//GeoApiContext context = GoogleContext.getContext(value);
-		
 		GeoApiContext context = GoogleContext.getContextKey();
 
 		String adresaStart = "";

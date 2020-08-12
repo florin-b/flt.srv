@@ -695,6 +695,18 @@ public class SqlQueries {
 
 	}	
 	
+	
+	public static String getCodAprobareRGEST() {
+		StringBuilder sqlString = new StringBuilder();
+
+		sqlString.append(" select distinct f.fid, f.aprobat from personal p, functii_non_vanzari f ");
+		sqlString.append(" where p.filiala = (select filiala from personal where cod=?) ");
+		sqlString.append(" and p.functie in ('DZ','DAG') and p.functie = f.aprobat and f.cod=? ");
+
+		return sqlString.toString();
+
+	}		
+	
 
 	public static String getCodAprobareKA08() {
 		StringBuilder sqlString = new StringBuilder();

@@ -21,6 +21,7 @@ import flota.service.database.DBManager;
 import flota.service.helpers.HelperAprobare;
 import flota.service.model.OperatiiDelegatii;
 import flota.service.model.OperatiiTraseu;
+import flota.service.utils.MailOperations;
 import flota.service.utils.MapUtils;
 
 public class TestClass {
@@ -29,7 +30,7 @@ public class TestClass {
 
 	public static void main(String[] args) throws SQLException {
 
-		//new OperatiiDelegatii().recalculeazaDelegatie("108111329649");
+		//new OperatiiDelegatii().recalculeazaDelegatie("113051807202");
 
 		// System.out.println(new OperatiiAngajat().getAngajatCategorie("MS10",
 		// "
@@ -75,23 +76,23 @@ public class TestClass {
 
 		DelegatieNoua delegatie = new DelegatieNoua();
 
-		delegatie.setCodAngajat("00086447");
-		delegatie.setTipAngajat("CVIP");
-		delegatie.setDataP("21-10-2019");
+		delegatie.setCodAngajat("00017858");
+		delegatie.setTipAngajat("RGEST");
+		delegatie.setDataP("21-08-2020");
 		delegatie.setOraP("0500");
-		delegatie.setDataS("21-10-2019");
-		delegatie.setNrAuto("B-72-LWN");
+		delegatie.setDataS("21-08-2020");
+		delegatie.setNrAuto("GL-40-EDI");
 		delegatie.setDistcalc("21");
 
-		getCodAprobare();
+		//getCodAprobare();
 
-		// new OperatiiDelegatii().adaugaDelegatie(delegatie);
+		new OperatiiDelegatii().adaugaDelegatie(delegatie);
 		
-		/*
-		MailOperations.sendMail("Flota JOB", "Start");
-		new OperatiiDelegatii().verificaDelegatiiTerminateCompanie();
-		MailOperations.sendMail("Flota JOB", "Stop");
-		*/
+		
+		//MailOperations.sendMail("Flota JOB", "Start");
+		//new OperatiiDelegatii().verificaDelegatiiTerminateCompanie();
+		//MailOperations.sendMail("Flota JOB", "Stop");
+		
 		
 		
 

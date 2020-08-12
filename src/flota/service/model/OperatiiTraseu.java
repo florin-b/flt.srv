@@ -118,6 +118,11 @@ public class OperatiiTraseu {
 			ResultSet rs = stmt.getResultSet();
 
 			objPuncte = new OperatiiDelegatii().getPuncteTraseu(conn, idDelegatie);
+			
+			if (objPuncte.isEmpty()) {
+				stmt.close();
+				return " ";
+			}
 
 			LatLng coordStop = objPuncte.get(objPuncte.size() - 1).getCoordonate();
 
@@ -282,9 +287,15 @@ public class OperatiiTraseu {
 	public void recalculeazaTraseuTeoretic(Connection conn, BeanDelegatieCauta delegatie, List<PunctTraseu> puncte) {
 
 		List<LatLng> coordonateOpriri = getCoordOpririDelegatie(conn, delegatie.getId(), dataPlecare, dataSosire);
+		
+		if (coordonateOpriri.isEmpty()){
+			System.out.println("Fara coordonate");
+			return;
+		}
+		
 		coordonateOpriri.add(0, coordonatePlecare);
 		coordonateOpriri.add(coordonateSosire);
-
+		
 		System.out.println("Se recalculeaza traseu teoretic.");
 
 		List<AdresaOprire> adreseOpriri = MapUtils.getAdreseCoordonate(coordonateOpriri);
