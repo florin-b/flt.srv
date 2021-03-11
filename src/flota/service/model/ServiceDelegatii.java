@@ -62,8 +62,6 @@ public class ServiceDelegatii {
 
 		calculeazaKmTeoretici(listDelegatii, interval);
 
-		
-
 	}
 
 	public void calculeazaKmTeoretici(List<DelegatieLite> listDelegatii, IntervalData interval) {
@@ -84,11 +82,8 @@ public class ServiceDelegatii {
 					distantaTeoretica = MapUtils.getDistantaTraseuCoordonate(adreseOpriri);
 					setKmSfarsitLuna(conn, delegatie.getIdDelegatie(), distantaTeoretica);
 				}
-				
-				
+
 				System.out.println(delegatie.getIdDelegatie() + " , " + distantaTeoretica);
-				
-				
 
 			}
 

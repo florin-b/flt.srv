@@ -111,6 +111,11 @@ public class OperatiiDelegatii {
 
 	public List<BeanDelegatieAprobare> getDelegatiiAprobari(String tipAngajat, String unitLog, String codDepart) {
 
+		
+		
+		if (tipAngajat.equals("SDIP"))
+			codDepart = "11";
+		
 		System.out.println("getDelegatiiAprobari: " + tipAngajat + " , " + unitLog + " , " + codDepart);
 
 		boolean isPersVanzari = Utils.isAngajatVanzari(tipAngajat);
@@ -359,8 +364,8 @@ public class OperatiiDelegatii {
 					LatLng coordPunct = MapUtils.geocodeAddress(UtilsAddress.getAddress(punct.getStrAdresa()));
 					punct.setCoordonate(new LatLng(coordPunct.lat, coordPunct.lng));
 
-					if (coordPunct.lat > 0 && !existaCoordonatePunct(conn, punct.getStrAdresa()))
-						salveazaCoordonatePunct(conn, punct.getStrAdresa(), coordPunct);
+					//if (coordPunct.lat > 0 && !existaCoordonatePunct(conn, punct.getStrAdresa()))
+				   //	salveazaCoordonatePunct(conn, punct.getStrAdresa(), coordPunct);
 
 				}
 

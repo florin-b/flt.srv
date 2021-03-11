@@ -331,7 +331,7 @@ public class SqlQueries {
 		return sqlString.toString();
 
 	}
-
+	
 	public static String getCoordonateTraseu() {
 		StringBuilder sqlString = new StringBuilder();
 

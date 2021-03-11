@@ -21,7 +21,7 @@ import flota.service.database.DBManager;
 import flota.service.helpers.HelperAprobare;
 import flota.service.model.OperatiiDelegatii;
 import flota.service.model.OperatiiTraseu;
-import flota.service.utils.MailOperations;
+import flota.service.model.ServiceDelegatii;
 import flota.service.utils.MapUtils;
 
 public class TestClass {
@@ -30,7 +30,7 @@ public class TestClass {
 
 	public static void main(String[] args) throws SQLException {
 
-		//new OperatiiDelegatii().recalculeazaDelegatie("113051807202");
+		new OperatiiDelegatii().recalculeazaDelegatie("131030730759");
 
 		// System.out.println(new OperatiiAngajat().getAngajatCategorie("MS10",
 		// "
@@ -38,7 +38,7 @@ public class TestClass {
 		// ",
 		// ""));
 
-		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("SDIP", "IS10", "15"));
+		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("SDIP", "IS10", "11"));
 
 		//new ServiceDelegatii().calculeazaKmSfarsitLuna();
 
@@ -74,6 +74,7 @@ public class TestClass {
 		// stops=GALATI / GALATI,BRAILA / BRAILA, nrAuto=GL-09-RRG, distreal=0,
 		// unitLog=BU90, id=null]
 
+		/*
 		DelegatieNoua delegatie = new DelegatieNoua();
 
 		delegatie.setCodAngajat("00017858");
@@ -83,10 +84,10 @@ public class TestClass {
 		delegatie.setDataS("21-08-2020");
 		delegatie.setNrAuto("GL-40-EDI");
 		delegatie.setDistcalc("21");
-
+*/
 		//getCodAprobare();
 
-		new OperatiiDelegatii().adaugaDelegatie(delegatie);
+		//new OperatiiDelegatii().adaugaDelegatie(delegatie);
 		
 		
 		//MailOperations.sendMail("Flota JOB", "Start");
