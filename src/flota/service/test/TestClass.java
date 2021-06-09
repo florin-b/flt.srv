@@ -30,15 +30,15 @@ public class TestClass {
 
 	public static void main(String[] args) throws SQLException {
 
-		new OperatiiDelegatii().recalculeazaDelegatie("131030730759");
-
+		new OperatiiDelegatii().recalculeazaDelegatie("137519509853");
+		
 		// System.out.println(new OperatiiAngajat().getAngajatCategorie("MS10",
 		// "
 		// ARC;ATR;AV;CAG;CAG1;CAG2;CAG3;CJ;CONS-GED;CVG;CVR;CVW;DADMIN;DZ;GD;GS;IHR;IOFR08;IOFR09;ISSM;KA;KA08;KA1;KA1;KA2;KA3;MAC;MM;MMPROD;OC;OIVPD;RGEST;SBA;SBAL;SBL;SD;SDCVA;SDKA;SHR;SM;SMG;SMR;SMW;SOF;SSFC;SSPROD;STIV;
 		// ",
 		// ""));
 
-		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("SDIP", "IS10", "11"));
+		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("DZ", "TM10", ""));
 
 		//new ServiceDelegatii().calculeazaKmSfarsitLuna();
 

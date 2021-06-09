@@ -190,7 +190,7 @@ public class OperatiiTraseu {
 		oraSosire = lastRecOra;
 		coordonateSosire = new LatLng(lastLat, lastLon);
 
-		if ((stopKm - startKm) > 0) {
+		if ((int)(stopKm - startKm) > 0) {
 			try {
 				actualizeazaSfarsitDelegatie(conn, delegatie, oraSosire, stopKm - startKm, objPuncte);
 			} catch (SQLException e) {
@@ -301,7 +301,7 @@ public class OperatiiTraseu {
 		List<AdresaOprire> adreseOpriri = MapUtils.getAdreseCoordonate(coordonateOpriri);
 
 		int distantaTeoretica = MapUtils.getDistantaTraseuCoordonate(adreseOpriri);
-
+		
 		try (PreparedStatement stmt = conn.prepareStatement(SqlQueries.updateDistantaRecalculata());) {
 
 			stmt.setDouble(1, distantaTeoretica);
