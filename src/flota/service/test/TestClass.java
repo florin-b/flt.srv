@@ -30,7 +30,7 @@ public class TestClass {
 
 	public static void main(String[] args) throws SQLException {
 
-		new OperatiiDelegatii().recalculeazaDelegatie("137519509853");
+		new OperatiiDelegatii().recalculeazaDelegatie("143565518405");
 		
 		// System.out.println(new OperatiiAngajat().getAngajatCategorie("MS10",
 		// "
@@ -94,9 +94,18 @@ public class TestClass {
 		//new OperatiiDelegatii().verificaDelegatiiTerminateCompanie();
 		//MailOperations.sendMail("Flota JOB", "Stop");
 		
-		
+		//testRegex();
 		
 
+	}
+	
+	public static void testRegex(){
+		
+		String expression = " Client 123 (CT! "; 
+				
+		String val = expression.replaceFirst("\\(.*", "");
+		
+		System.out.println(val);
 	}
 
 	public static void getCodAprobare() {

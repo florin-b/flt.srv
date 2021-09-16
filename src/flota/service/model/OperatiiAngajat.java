@@ -78,6 +78,9 @@ public class OperatiiAngajat {
 	}
 
 	public List<Angajat> getAngajati(String tipAngajat, String unitLog, String codDepart, String codAngajat) {
+		
+		
+		
 
 		List<Angajat> listAngajati = new ArrayList<>();
 
@@ -142,7 +145,7 @@ public class OperatiiAngajat {
 
 	public List<CategorieAngajat> getCategSubord(String tipAngajat) {
 		List<CategorieAngajat> categorii = new ArrayList<>();
-
+		
 		try (Connection conn = new DBManager().getProdDataSource().getConnection();
 				PreparedStatement stmt = conn.prepareStatement(SqlQueries.getCategoriiSubordonati())) {
 
@@ -168,6 +171,7 @@ public class OperatiiAngajat {
 	}
 
 	public List<AngajatCategorie> getAngajatCategorie(String filiala, String tipAngajat, String departament) {
+		
 
 		List<AngajatCategorie> listAngajati = new ArrayList<>();
 

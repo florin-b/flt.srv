@@ -24,6 +24,8 @@ public class PozitieMasina {
 	private static final Logger logger = LogManager.getLogger(PozitieMasina.class);
 
 	public List<PozitieAngajat> getPozitieAngajat(String angajati) {
+		
+		System.out.println("getPozitieAngajat: " + angajati);
 
 		List<PozitieAngajat> listPozitii = new ArrayList<>();
 

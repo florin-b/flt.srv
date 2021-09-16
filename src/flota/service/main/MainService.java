@@ -292,6 +292,8 @@ public class MainService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<AngajatCategorie> getAngajatCategorie(@QueryParam("filiala") String filiala, @QueryParam("tipAngajat") String tipAngajat,
 			@QueryParam("departament") String departament) {
+		
+		
 
 		return new OperatiiAngajat().getAngajatCategorie(filiala.trim(), tipAngajat.trim(), departament.trim());
 

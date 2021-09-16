@@ -110,6 +110,7 @@ public class OperatiiMasina {
 			stmt.setString(1, codAngajat);
 			stmt.setString(2, DateUtils.formatDateSap(dataStart));
 
+			
 			stmt.executeQuery();
 			ResultSet rs = stmt.getResultSet();
 
