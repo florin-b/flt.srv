@@ -30,7 +30,7 @@ public class TestClass {
 
 	public static void main(String[] args) throws SQLException {
 
-		new OperatiiDelegatii().recalculeazaDelegatie("143565518405");
+		//new OperatiiDelegatii().recalculeazaDelegatie("159960248830");
 		
 		// System.out.println(new OperatiiAngajat().getAngajatCategorie("MS10",
 		// "
@@ -38,7 +38,9 @@ public class TestClass {
 		// ",
 		// ""));
 
-		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("DZ", "TM10", ""));
+		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("SMG", "BU10", ""));
+		
+		//System.out.println("De aprobat:" + new OperatiiDelegatii().getDelegatiiAprobari("SMG", "BU10", "11"));
 
 		//new ServiceDelegatii().calculeazaKmSfarsitLuna();
 

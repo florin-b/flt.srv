@@ -338,11 +338,11 @@ public class MapUtils {
 
 			} catch (OverQueryLimitException q) {
 				logger.error("getAdreseCoordonate -> " + Utils.getStackTrace(q) + " , key = " + value);
-				MailOperations.sendMail("getAdreseCoordonate -> " + Utils.getStackTrace(q) + " , key = " + value);
+				//MailOperations.sendMail("getAdreseCoordonate -> " + Utils.getStackTrace(q) + " , key = " + value);
 				
 			} catch (Exception e) {
 				logger.error("getAdreseCoordonate -> " + Utils.getStackTrace(e) + " , key = " + value);
-				MailOperations.sendMail("getAdreseCoordonate -> " + e.toString());
+				//MailOperations.sendMail("getAdreseCoordonate -> " + e.toString());
 			}
 		}
 

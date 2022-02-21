@@ -59,6 +59,7 @@ public class ServiceDelegatii {
 			logger.error(Utils.getStackTrace(e));
 			MailOperations.sendMail(Utils.getStackTrace(e));
 		}
+		
 
 		calculeazaKmTeoretici(listDelegatii, interval);
 
